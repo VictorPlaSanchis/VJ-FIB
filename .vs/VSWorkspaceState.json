@@ -3,8 +3,9 @@
     "",
     "\\VJ-2D",
     "\\VJ-2D\\2D-ExampleGames",
-    "\\VJ-2D\\2D-ExampleGames\\01-TBE"
+    "\\VJ-2D\\2D-ExampleGames\\02-Bubble",
+    "\\VJ-2D\\2D-ExampleGames\\02-Bubble\\02-Bubble"
   ],
-  "SelectedNode": "\\VJ-2D\\2D-ExampleGames\\01-TBE\\01-TBE.sln",
+  "SelectedNode": "\\VJ-2D\\2D-ExampleGames\\02-Bubble\\02-Bubble\\Shader.cpp",
   "PreviewInSolutionExplorer": false
 }
