@@ -78,7 +78,6 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 }
-
 void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
@@ -87,7 +86,7 @@ void Player::update(int deltaTime)
 		if(sprite->animation() != MOVE_LEFT)
 			sprite->changeAnimation(MOVE_LEFT);
 		posPlayer.x -= VELOCITY_PLAYER;
-		if(map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
+		if(map->collisionMoveLeft(posPlayer, glm::ivec2(8, 8)))
 		{
 			posPlayer.x += VELOCITY_PLAYER;
 			sprite->changeAnimation(STAND_LEFT);
@@ -98,7 +97,7 @@ void Player::update(int deltaTime)
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
 		posPlayer.x += VELOCITY_PLAYER;
-		if(map->collisionMoveRight(posPlayer, glm::ivec2(32, 16)))
+		if(map->collisionMoveRight(posPlayer, glm::ivec2(16, 8)))
 		{
 			posPlayer.x -= VELOCITY_PLAYER;
 			sprite->changeAnimation(STAND_RIGHT);
@@ -124,13 +123,13 @@ void Player::update(int deltaTime)
 		{
 			posPlayer.y = int(startY - JUMP_HEIGHT * sin(3.14159f * jumpAngle / 180.f));
 			if(jumpAngle > 90)
-				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(32, 16), &posPlayer.y);
+				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(16, 8), &posPlayer.y);
 		}
 	}
 	else
 	{
 		posPlayer.y += FALL_STEP;
-		if(map->collisionMoveDown(posPlayer, glm::ivec2(32, 16), &posPlayer.y))
+		if(map->collisionMoveDown(posPlayer, glm::ivec2(16, 8), &posPlayer.y))
 		{
 			if(Game::instance().getSpecialKey(GLUT_KEY_UP))
 			{
