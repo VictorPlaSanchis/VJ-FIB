@@ -3,9 +3,13 @@
 
 
 #include <glm/glm.hpp>
+#include <list>
 #include "ShaderProgram.h"
 #include "TileMap.h"
 #include "Player.h"
+#include "Enemy.h"
+
+using namespace std;
 
 
 // Scene contains all the entities of our game.
@@ -29,6 +33,8 @@ private:
 private:
 	TileMap *map;
 	Player *player;
+	list<Enemy*> enemies;
+
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;

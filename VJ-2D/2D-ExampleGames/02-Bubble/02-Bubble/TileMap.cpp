@@ -80,18 +80,18 @@ bool TileMap::loadLevel(const string &levelFile)
 	map = new int[mapSize.x * mapSize.y];
 	for(int j=0; j<mapSize.y; j++)
 	{
-		for(int i=0; i<mapSize.x; i++)
-		{
-			fin.get(tile);
-			if(tile == ' ')
-				map[j*mapSize.x+i] = 0;
-			else
-				map[j*mapSize.x+i] = tile - int('0');
+		getline(fin, line);
+		int pos = line.find(',');
+		int i = 0;
+		while (pos != string::npos) {
+			string newTile = line.substr(0, pos);
+			map[j * mapSize.x + i] = stoi(newTile);
+			line = line.substr(pos + 1, line.length());
+			pos = line.find(',');
+			i++;
 		}
-		fin.get(tile);
-#ifndef _WIN32
-		fin.get(tile);
-#endif
+		if (line != "")	// controla que pueda no terminar en ',' si ya ha sido asi no entra en el if
+			map[j * mapSize.x + j] = stoi(line.substr(0, line.length()));
 	}
 	fin.close();
 	
