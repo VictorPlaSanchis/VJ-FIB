@@ -36,6 +36,8 @@ private:
 	Texture spritesheet1;
 	Texture spritesheet2;
 	Texture spritesheet3;
+	Texture spritesheet4;
+	Texture spritesheet5;
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
@@ -43,6 +45,8 @@ private:
 	bool up;
 	bool down;
 	bool right;
+	bool left;
+	bool submenu;
 };
 
 #endif 

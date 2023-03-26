@@ -40,6 +40,8 @@ void Menu::init()
 	up=false;
 	down=false;
 	right = false;
+	left = false;
+	submenu = false;
 	initShaders();
 	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	sel = 0;
@@ -83,6 +85,24 @@ void Menu::init()
 	sprite->changeAnimation(0);
 	sprite->setPosition(glm::vec2(float(0), float(0)));
 	sprites.push_back(sprite);
+
+	spritesheet4.loadFromFile("images/Inst.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sprite = Sprite::createSprite(glm::ivec2(SCREEN_WIDTH, SCREEN_HEIGHT), glm::vec2(1., 1.), &spritesheet4, &texProgram);
+	sprite->setNumberAnimations(1);
+	sprite->setAnimationSpeed(STAND_LEFT, 8);
+	sprite->addKeyframe(STAND_LEFT, glm::vec2(0.0, 0.0));
+	sprite->changeAnimation(0);
+	sprite->setPosition(glm::vec2(float(0), float(0)));
+	sprites.push_back(sprite);
+
+	spritesheet5.loadFromFile("images/Cred.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sprite = Sprite::createSprite(glm::ivec2(SCREEN_WIDTH, SCREEN_HEIGHT), glm::vec2(1., 1.), &spritesheet5, &texProgram);
+	sprite->setNumberAnimations(1);
+	sprite->setAnimationSpeed(STAND_LEFT, 8);
+	sprite->addKeyframe(STAND_LEFT, glm::vec2(0.0, 0.0));
+	sprite->changeAnimation(0);
+	sprite->setPosition(glm::vec2(float(0), float(0)));
+	sprites.push_back(sprite);
 }
 
 void Menu::update(int deltaTime)
@@ -95,29 +115,55 @@ void Menu::update(int deltaTime)
 		case 0:
 			Game::instance().changeMode(1);
 			break;
+		case 1:
+			submenu = true;
+			sel = 4;
+			break;
+		case 2:
+			submenu = true;
+			sel = 5;
+			break;
+		case 3:
+			exit(0);
+			break;
 		default:
 			break;
 		}
 		
 		right = true;
 	}
-	if (Game::instance().getSpecialKey(GLUT_KEY_UP))
+	else if (Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
-		if (!up){
-			if (sel > 0)--sel;
+		if (submenu) {
+			sel = 0;
+			submenu = false;
 		}
+		left = true;
+	}
+	else if (Game::instance().getSpecialKey(GLUT_KEY_UP))
+	{
+		if (!submenu) {
+			if (!up) {
+				if (sel > 0)--sel;
+			}
+		}
+		
 		up = true;
 	}else if (Game::instance().getSpecialKey(GLUT_KEY_DOWN))
 	{
-		if (!down) {
-			if (sel < sprites.size() - 1) ++sel;
+		if (!submenu) {
+			if (!down) {
+				if (sel < 3) ++sel;
+			}
 		}
+		
 		down = true;
 	}
 	else{
 		right = false;
 		up = false;
 		down = false;
+		left = false;
 	}
 	sprites[sel]->update(deltaTime);
 }

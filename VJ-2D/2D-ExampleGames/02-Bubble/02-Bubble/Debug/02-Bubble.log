@@ -1,11 +1,4 @@
-﻿  Enemy.cpp
-  Game.cpp
-  Menu.cpp
-C:\Users\Alfonso\source\repos\VictorPlaSanchis\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Menu.cpp(113,12): warning C4018: '<': signed/unsigned mismatch
-  Player.cpp
-C:\Users\Alfonso\source\repos\VictorPlaSanchis\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(41,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Alfonso\source\repos\VictorPlaSanchis\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(47,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Scene.cpp
+﻿  Menu.cpp
   main.cpp
   Generating Code...
 SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'C:\Users\Alfonso\Source\Repos\VictorPlaSanchis\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\vc100.pdb'; linking object as if no debug info
