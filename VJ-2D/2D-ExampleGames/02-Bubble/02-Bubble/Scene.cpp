@@ -70,6 +70,7 @@ void Scene::init()
 void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
+	map->update(glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->update(deltaTime);
 	for (Enemy* enemy : enemies) {
 		enemy->update(deltaTime);

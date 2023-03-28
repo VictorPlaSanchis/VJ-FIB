@@ -66,6 +66,7 @@ void Player::update(int deltaTime)
 			posPlayer.x += VELOCITY_PLAYER;
 			sprite->changeAnimation(STAND_LEFT);
 		}
+		map->changePosition(posPlayer);
 	}
 	else if(Game::instance().getSpecialKey(GLUT_KEY_RIGHT))
 	{
@@ -77,6 +78,7 @@ void Player::update(int deltaTime)
 			posPlayer.x -= VELOCITY_PLAYER;
 			sprite->changeAnimation(STAND_RIGHT);
 		}
+		map->changePosition(posPlayer);
 	}
 	else
 	{
