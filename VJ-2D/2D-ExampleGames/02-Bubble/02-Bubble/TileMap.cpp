@@ -45,6 +45,12 @@ void TileMap::free()
 	glDeleteBuffers(1, &vbo);
 }
 
+void TileMap::addEnemy(string enemyType, int x, int y) {
+	enemies.push_back(enemyType);
+	enemiesX.push_back(x);
+	enemiesY.push_back(y);
+}
+
 bool TileMap::loadLevel(const string &levelFile)
 {
 	ifstream fin;
@@ -84,8 +90,14 @@ bool TileMap::loadLevel(const string &levelFile)
 		int pos = line.find(',');
 		int i = 0;
 		while (pos != string::npos) {
+			int newValue;
 			string newTile = line.substr(0, pos);
-			map[j * mapSize.x + i] = stoi(newTile);
+			if (newTile == "S" || newTile == "V" || newTile == "W") {
+				newValue = 0;
+				this->addEnemy(newTile, i, j);
+			}
+			else newValue = stoi(newTile);
+			map[j * mapSize.x + i] = newValue;
 			line = line.substr(pos + 1, line.length());
 			pos = line.find(',');
 			i++;
@@ -205,32 +217,25 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	return false;
 }
 
+bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size) const
+{
+	int x0, y, x1;
 
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x - 1) / tileSize;
+	y = (pos.y - size.y) / tileSize;
+	for (int x = x0; x <= x1; x++)
+	{
+		if (map[y * mapSize.x + x] != 0)
+			return true;
+	}
 
+	return false;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void TileMap::getEnemies(std::vector<string>* enemyTypes, std::vector<int>* enemiesX, std::vector<int>* enemiesY)
+{
+	*enemyTypes = this->enemies;
+	*enemiesX = this->enemiesX;
+	*enemiesY = this->enemiesY;
+}

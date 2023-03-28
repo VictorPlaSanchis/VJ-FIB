@@ -40,7 +40,7 @@ void EnemySkeleton::init(const glm::ivec2 & tileMapPos, ShaderProgram & shaderPr
 		sprite->addKeyframe(MOVE_RIGHT, glm::vec2(factor * i, 0.0));
 	}
 
-	sprite->changeAnimation(0);
+	sprite->changeAnimation(MOVE_RIGHT);
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }

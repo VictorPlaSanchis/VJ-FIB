@@ -5,6 +5,9 @@
 #include "Game.h"
 
 #include "EnemySkeleton.h"
+#include "EnemyVampire.h"
+
+#include <vector>
 
 #define SCREEN_X 32 * 4
 #define SCREEN_Y 16 * 4
@@ -43,24 +46,42 @@ void Scene::init()
 	initShaders();
 	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 
+	// Set up enemies on the level
+	std::vector<string> enemiesFound;
+	std::vector<int> enemiesX;
+	std::vector<int> enemiesY;
+	map->getEnemies(&enemiesFound, &enemiesX, &enemiesY);
+
+	for (int i = 0; i < enemiesFound.size(); i++) {
+		Enemy* enemy;
+		if (enemiesFound[i] == "S") {
+			enemy = new EnemySkeleton();
+			enemy->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemy->setPosition(glm::vec2(enemiesX[i] * map->getTileSize(), enemiesY[i] * map->getTileSize()));
+			enemy->setTileMap(map);
+			enemies.push_back(enemy);
+		}
+		else if (enemiesFound[i] == "V") {
+			enemy = new EnemyVampire();
+			enemy->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemy->setPosition(glm::vec2(enemiesX[i] * map->getTileSize(), enemiesY[i] * map->getTileSize()));
+			enemy->setTileMap(map);
+			enemies.push_back(enemy);
+		}
+		else if (enemiesFound[i] == "W") {
+			enemy = new EnemyVampire();
+			enemy->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemy->setPosition(glm::vec2(enemiesX[i] * map->getTileSize(), enemiesY[i] * map->getTileSize()));
+			enemy->setTileMap(map);
+			enemies.push_back(enemy);
+		}
+	}
+
 	// Player
 	player = new Player();
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
-
-	// Enemies
-	EnemySkeleton* enemy1 = new EnemySkeleton();
-	enemy1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemy1->setPosition(glm::vec2(ENEMY_1_INIT_X_TILES * map->getTileSize(), ENEMY_1_INIT_Y_TILES * map->getTileSize()));
-	enemy1->setTileMap(map);
-	enemies.push_back(enemy1);
-
-	//EnemySkeleton* enemy2 = new EnemySkeleton();
-	//enemy2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	//enemy2->setPosition(glm::vec2(ENEMY_2_INIT_X_TILES * map->getTileSize(), ENEMY_2_INIT_Y_TILES * map->getTileSize()));
-	//enemy2->setTileMap(map);
-	//enemies.push_back(enemy2);
 
 	// Others
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
