@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\VJ-2D",
+    "\\VJ-2D\\2D-ExampleGames",
+    "\\VJ-2D\\2D-ExampleGames\\02-Bubble",
+    "\\VJ-2D\\BaseOpenGL"
   ],
-  "SelectedNode": "\\02-Bubble.sln",
+  "SelectedNode": "\\VJ-2D\\2D-ExampleGames\\02-Bubble\\02-Bubble.sln",
   "PreviewInSolutionExplorer": false
 }
