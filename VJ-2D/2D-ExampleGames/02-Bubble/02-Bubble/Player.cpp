@@ -74,14 +74,14 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(MOVE_RIGHT);
 		posPlayer.x += VELOCITY_PLAYER;
 		if(map->collisionMoveRight(posPlayer, glm::ivec2(16, 8)))
-		{
+		{	 
 			posPlayer.x -= VELOCITY_PLAYER;
 			sprite->changeAnimation(STAND_RIGHT);
-		}
+		}	 
 		map->changePosition(posPlayer);
-	}
-	else
-	{
+	}		 
+	else	 
+	{		 
 		if(sprite->animation() == MOVE_LEFT)
 			sprite->changeAnimation(STAND_LEFT);
 		else if(sprite->animation() == MOVE_RIGHT)
