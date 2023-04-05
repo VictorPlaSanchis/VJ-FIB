@@ -7,9 +7,10 @@
 
 
 #define JUMP_ANGLE_STEP 4
-#define JUMP_HEIGHT 24
+#define JUMP_HEIGHT 36
 #define FALL_STEP 4
 #define VELOCITY_PLAYER 1 // pixels per frame
+#define LIFE_START 5
 
 enum PlayerAnims
 {
@@ -20,7 +21,7 @@ enum PlayerAnims
 void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	bJumping = false;
-	
+	life = LIFE_START;
 	int numberOfFramesX = 12;
 	int numberOfFramesY = 2;
 
@@ -99,6 +100,7 @@ void Player::update(int deltaTime)
 		else
 		{
 			posPlayer.y = int(startY - JUMP_HEIGHT * sin(3.14159f * jumpAngle / 180.f));
+			if (posPlayer.y < 0) posPlayer.y = 0;
 			if(jumpAngle > 90)
 				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(16, 8), &posPlayer.y);
 		}
