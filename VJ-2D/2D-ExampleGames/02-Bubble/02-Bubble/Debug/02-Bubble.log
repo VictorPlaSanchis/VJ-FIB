@@ -1,8 +1,23 @@
-﻿  Player.cpp
-c:\users\aions\source\repos\vj-fib\vj-2d\2d-examplegames\02-bubble\02-bubble\player.cpp(41): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\aions\source\repos\vj-fib\vj-2d\2d-examplegames\02-bubble\02-bubble\player.cpp(47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'C:\Users\aions\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\vc100.pdb'; linking object as if no debug info
-SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'C:\Users\aions\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\vc100.pdb'; linking object as if no debug info
-SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'C:\Users\aions\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\vc100.pdb'; linking object as if no debug info
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'C:\Users\aions\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\vc100.pdb'; linking object as if no debug info
-  02-Bubble.vcxproj -> C:\Users\aions\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\02-Bubble.exe
+﻿  Enemy.cpp
+  EnemySkeleton.cpp
+C:\Users\Alfonso\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\EnemySkeleton.cpp(32,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Alfonso\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\EnemySkeleton.cpp(38,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+  main.cpp
+  Menu.cpp
+  Player.cpp
+C:\Users\Alfonso\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(41,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Alfonso\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(47,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Scene.cpp
+  Shader.cpp
+  ShaderProgram.cpp
+  Sprite.cpp
+  Texture.cpp
+  TileMap.cpp
+C:\Users\Alfonso\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\TileMap.cpp(53,7): warning C4101: 'tile': unreferenced local variable
+  Generating Code...
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_DXT.obj)' or at ''; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(SOIL.obj)' or at ''; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(stb_image_aug.obj)' or at ''; linking object as if no debug info
+  02-Bubble.vcxproj -> C:\Users\Alfonso\Source\Repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\02-Bubble.exe
