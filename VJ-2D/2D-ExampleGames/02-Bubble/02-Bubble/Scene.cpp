@@ -9,8 +9,8 @@
 
 #include <vector>
 
-#define SCREEN_X 32 * 4
-#define SCREEN_Y 16 * 4
+#define SCREEN_X (320.0 / 2.0) - ((1.0 / 3.4) * 320.0)
+#define SCREEN_Y 50
 
 #define INIT_PLAYER_X_TILES 1
 #define INIT_PLAYER_Y_TILES 8
@@ -29,6 +29,14 @@ Scene::Scene()
 	enemies = list<Enemy*>();
 }
 
+Scene::Scene(string file)
+{
+	map = NULL;
+	player = NULL;
+	enemies = list<Enemy*>();
+	this->fileScene = file;
+}
+
 Scene::~Scene()
 {
 	if(map != NULL)
@@ -40,11 +48,15 @@ Scene::~Scene()
 			delete enemy;
 }
 
+void Scene::initVariables() {
+	enemies = std::list<Enemy*>();
+}
 
 void Scene::init()
 {
 	initShaders();
-	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	initVariables();
+	map = TileMap::createTileMap(this->fileScene, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 
 	// Set up enemies on the level
 	std::vector<string> enemiesFound;
@@ -95,6 +107,9 @@ void Scene::update(int deltaTime)
 	for (Enemy* enemy : enemies) {
 		enemy->update(deltaTime);
 	}
+	if (collisionPlayerEnemy()) {
+		SceneManagement::instance().goNextScene();
+	}
 }
 
 void Scene::render()
@@ -112,6 +127,23 @@ void Scene::render()
 	for (Enemy* enemy : enemies) {
 		enemy->render();
 	}
+}
+
+float distance(glm::vec2 A, glm::vec2 B) {
+	return glm::distance(A, B);
+}
+
+bool Scene::collisionPlayerEnemy()
+{
+	const float minimumDistance = 6.0f;
+	glm::vec2 positionPlayer = this->player->posPlayer;
+	for (Enemy* enemy : enemies) {
+		glm::vec2 positionEnemy = enemy->posEnemy - glm::ivec2(0, 2);
+		if (distance(positionPlayer, positionEnemy) < minimumDistance) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void Scene::initShaders()

@@ -7,15 +7,20 @@ void Game::init()
 {
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	SceneManagement::instance().initializeScenes();
+	goMenu();
+}
+
+void Game::goMenu() {
 	menu.init();
-	scene.init();
 	start = true;
+	hearts = 0;
 }
 
 bool Game::update(int deltaTime)
 {
 	if (start) menu.update(deltaTime);
-	else scene.update(deltaTime);
+	else SceneManagement::instance().currentScene->update(deltaTime);
 	
 	return bPlay;
 }
@@ -25,11 +30,13 @@ void Game::render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	if (start) menu.render();
-	else scene.render();
+	else SceneManagement::instance().currentScene->render();
 }
 
 void Game::keyPressed(int key)
 {
+	if (key == 97)
+		SceneManagement::instance().goNextScene();
 	if(key == 27) // Escape code
 		bPlay = false;
 	keys[key] = true;

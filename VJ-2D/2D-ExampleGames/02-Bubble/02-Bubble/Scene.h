@@ -21,14 +21,19 @@ class Scene
 
 public:
 	Scene();
+	Scene(string file);
 	~Scene();
 
 	void init();
 	void update(int deltaTime);
 	void render();
+	TileMap* getTileMap() { return this->map; }
+
+	bool collisionPlayerEnemy();
 
 private:
 	void initShaders();
+	void initVariables();
 
 private:
 	TileMap *map;
@@ -38,6 +43,8 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
+
+	string fileScene;
 
 };
 

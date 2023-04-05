@@ -43,7 +43,7 @@ void Menu::init()
 	left = false;
 	submenu = false;
 	initShaders();
-	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	map = SceneManagement::instance().currentScene->getTileMap();
 	sel = 0;
 
 	// Others
