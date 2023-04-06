@@ -22,5 +22,5 @@ void ObjectKey::update(int deltaTime)
 void ObjectKey::behaviour()
 {
 	SceneManagement::instance().currentScene->openDoor();
-	isDestroyed = true;
+	SceneManagement::instance().currentScene->removeObject(this);
 }

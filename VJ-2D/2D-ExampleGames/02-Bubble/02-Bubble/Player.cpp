@@ -55,6 +55,12 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 }
 void Player::update(int deltaTime)
 {
+	int faster;
+	if (SceneManagement::instance().currentScene->playerFast == true) {
+		faster = 20;
+	}
+	else faster = 0;
+
 	sprite->update(deltaTime);
 	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
@@ -98,7 +104,7 @@ void Player::update(int deltaTime)
 		}
 		else
 		{
-			posPlayer.y = int(startY - JUMP_HEIGHT * sin(3.14159f * jumpAngle / 180.f));
+			posPlayer.y = int(startY - (JUMP_HEIGHT + faster) * sin(3.14159f * jumpAngle / 180.f));
 			if(jumpAngle > 90)
 				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(16, 8), &posPlayer.y);
 		}

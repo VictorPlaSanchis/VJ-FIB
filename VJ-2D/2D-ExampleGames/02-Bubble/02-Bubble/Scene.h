@@ -11,6 +11,8 @@
 #include "Object.h"
 #include "ObjectKey.h"
 #include "ObjectDoor.h"
+#include "ObjectStopwatch.h"
+#include "ObjectSpeed.h"
 
 using namespace std;
 
@@ -37,6 +39,11 @@ public:
 
 	void openDoor();
 	void makeAppearKey();
+	void stopTime();
+	void fasterPlayer();
+	void removeObject(Object* obj);
+	bool isStopTime = false;
+	bool playerFast = false;
 
 	bool playerCannotDie = false;
 
@@ -62,6 +69,9 @@ private:
 
 	glm::ivec2 doorPosition;
 	glm::ivec2 keyPosition;
+
+	int timeStopTime;
+	int timeFastPlayer;
 
 };
 

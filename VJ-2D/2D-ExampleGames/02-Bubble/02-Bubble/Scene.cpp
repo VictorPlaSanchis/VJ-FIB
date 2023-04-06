@@ -6,6 +6,7 @@
 
 #include "EnemySkeleton.h"
 #include "EnemyVampire.h"
+#include "EnemyWomper.h"
 
 #include <vector>
 
@@ -82,7 +83,7 @@ void Scene::init()
 			enemies.push_back(enemy);
 		}
 		else if (enemiesFound[i] == "W") {
-			enemy = new EnemyVampire();
+			enemy = new EnemyWomper();
 			enemy->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 			enemy->setPosition(glm::vec2(enemiesX[i] * map->getTileSize(), enemiesY[i] * map->getTileSize()));
 			enemy->setTileMap(map);
@@ -103,17 +104,30 @@ void Scene::init()
 	// Objects
 	ObjectKey* key = new ObjectKey();
 	key->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	key->setPosition(glm::vec2((INIT_PLAYER_X_TILES + 3) * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
+	key->setPosition(glm::vec2(14 * map->getTileSize(), 13 * map->getTileSize()));
 	key->setTileMap(map);
 	//objects.push_back(key);
 	this->key = key;
 
 	ObjectDoor* door = new ObjectDoor();
 	door->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	door->setPosition(glm::vec2(6 * map->getTileSize(), 6 * map->getTileSize()));
+	door->setPosition(glm::vec2(3 * map->getTileSize(), 8 * map->getTileSize()));
 	door->setTileMap(map);
 	objects.push_back(door);
 	this->door = door;
+
+	ObjectStopwatch* reloj = new ObjectStopwatch();
+	reloj->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	reloj->setPosition(glm::vec2(10 * map->getTileSize(), 6 * map->getTileSize()));
+	reloj->setTileMap(map);
+	objects.push_back(reloj);
+
+	ObjectSpeed* speed = new ObjectSpeed();
+	speed->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	speed->setPosition(glm::vec2(12 * map->getTileSize(), 8 * map->getTileSize()));
+	speed->setTileMap(map);
+	objects.push_back(speed);
+
 }
 
 void Scene::update(int deltaTime)
@@ -124,8 +138,10 @@ void Scene::update(int deltaTime)
 	for (Object* object : objects) {
 		object->update(deltaTime);
 	}
-	for (Enemy* enemy : enemies) {
-		enemy->update(deltaTime);
+	if (!isStopTime) {
+		for (Enemy* enemy : enemies) {
+			enemy->update(deltaTime);
+		}
 	}
 	if (collisionPlayerEnemy() && !playerCannotDie) {
 		// restar corazon
@@ -140,6 +156,20 @@ void Scene::update(int deltaTime)
 	map->changePosition(this->player->posPlayer);
 	if (this->map->allTilesColoured()) {
 		makeAppearKey();
+	}
+
+	if (isStopTime) {
+		timeStopTime--;
+		if (timeStopTime < 0) {
+			isStopTime = false;
+		}
+	}
+
+	if (playerFast) {
+		timeFastPlayer--;
+		if (timeFastPlayer < 0) {
+			playerFast = false;
+		}
 	}
 }
 
@@ -205,6 +235,22 @@ void Scene::makeAppearKey()
 	if (it == objects.end()) {
 		objects.push_back(this->key);
 	}
+}
+
+void Scene::stopTime()
+{
+	timeStopTime = 500;
+	isStopTime = true;
+}
+
+void Scene::fasterPlayer()
+{
+	timeFastPlayer = 400;
+	playerFast = true;
+}
+
+void Scene::removeObject(Object* obj) {
+	this->objects.remove(obj);
 }
 
 void Scene::initShaders()

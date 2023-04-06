@@ -21,7 +21,6 @@ public:
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
-	bool isDestroyed = false;
 
 	bool collisionWithPlayer(glm::vec2 playerPosition);
 

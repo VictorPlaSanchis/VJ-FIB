@@ -8,8 +8,7 @@
 
 void Object::render()
 {
-	if(!isDestroyed)
-		sprite->render();
+	sprite->render();
 }
 
 void Object::setTileMap(TileMap* tileMap)
