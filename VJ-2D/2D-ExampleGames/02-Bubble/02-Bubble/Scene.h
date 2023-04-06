@@ -13,6 +13,7 @@
 #include "ObjectDoor.h"
 #include "ObjectStopwatch.h"
 #include "ObjectSpeed.h"
+#include "Text.h"
 
 using namespace std;
 
@@ -72,6 +73,7 @@ private:
 
 	int timeStopTime;
 	int timeFastPlayer;
+	Text text;
 
 };
 

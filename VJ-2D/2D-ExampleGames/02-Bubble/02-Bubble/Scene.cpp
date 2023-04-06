@@ -128,6 +128,12 @@ void Scene::init()
 	speed->setTileMap(map);
 	objects.push_back(speed);
 
+
+	if (!text.init("fonts/OpenSans-Regular.ttf"))
+		//if(!text.init("fonts/OpenSans-Bold.ttf"))
+		//if(!text.init("fonts/DroidSerif.ttf"))
+		cout << "Could not load font!!!" << endl;
+
 }
 
 void Scene::update(int deltaTime)
@@ -191,6 +197,8 @@ void Scene::render()
 	for (Enemy* enemy : enemies) {
 		enemy->render();
 	}
+
+	text.render("Videogames!!!", glm::vec2(50,50), 32, glm::vec4(1, 1, 1, 1));
 }
 
 float distance(glm::vec2 A, glm::vec2 B) {
