@@ -12,8 +12,8 @@
 #define SCREEN_X (320.0 / 2.0) - ((1.0 / 3.4) * 320.0)
 #define SCREEN_Y 50
 
-#define INIT_PLAYER_X_TILES 1
-#define INIT_PLAYER_Y_TILES 8
+#define INIT_PLAYER_X_TILES 4
+#define INIT_PLAYER_Y_TILES 3
 
 #define ENEMY_1_INIT_X_TILES 4
 #define ENEMY_1_INIT_Y_TILES 8
