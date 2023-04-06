@@ -19,6 +19,7 @@ public:
 	void goFirstScene();
 	void goLastScene();
 	void goMenu();
+	void restartCurrentScene();
 
 public:
 	std::vector<Scene*> scenes;

@@ -43,3 +43,7 @@ void SceneManagement::goMenu()
 	this->currentScene = this->scenes[currentSceneIndex];
 	Game::instance().goMenu();
 }
+
+void SceneManagement::restartCurrentScene() {
+	this->currentScene->init();
+}

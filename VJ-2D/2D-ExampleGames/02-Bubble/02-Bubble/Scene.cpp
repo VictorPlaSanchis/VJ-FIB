@@ -12,8 +12,8 @@
 #define SCREEN_X (320.0 / 2.0) - ((1.0 / 3.4) * 320.0)
 #define SCREEN_Y 50
 
-#define INIT_PLAYER_X_TILES 4
-#define INIT_PLAYER_Y_TILES 3
+#define INIT_PLAYER_X_TILES 1
+#define INIT_PLAYER_Y_TILES 8
 
 #define ENEMY_1_INIT_X_TILES 4
 #define ENEMY_1_INIT_Y_TILES 8
@@ -39,9 +39,9 @@ Scene::Scene(string file)
 
 Scene::~Scene()
 {
-	if(map != NULL)
+	if (map != NULL)
 		delete map;
-	if(player != NULL)
+	if (player != NULL)
 		delete player;
 	if (enemies.size() > 0)
 		for (Enemy* enemy : enemies)
@@ -50,6 +50,7 @@ Scene::~Scene()
 
 void Scene::initVariables() {
 	enemies = std::list<Enemy*>();
+	objects = std::list<Object*>();
 }
 
 void Scene::init()
@@ -98,6 +99,21 @@ void Scene::init()
 	// Others
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
+
+	// Objects
+	ObjectKey* key = new ObjectKey();
+	key->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	key->setPosition(glm::vec2((INIT_PLAYER_X_TILES + 3) * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
+	key->setTileMap(map);
+	objects.push_back(key);
+	this->key = key;
+
+	ObjectDoor* door = new ObjectDoor();
+	door->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	door->setPosition(glm::vec2(6 * map->getTileSize(), 6 * map->getTileSize()));
+	door->setTileMap(map);
+	objects.push_back(door);
+	this->door = door;
 }
 
 void Scene::update(int deltaTime)
@@ -105,12 +121,22 @@ void Scene::update(int deltaTime)
 	currentTime += deltaTime;
 	player->update(deltaTime);
 	map->update(glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	for (Object* object : objects) {
+		object->update(deltaTime);
+	}
 	for (Enemy* enemy : enemies) {
 		enemy->update(deltaTime);
 	}
 	if (collisionPlayerEnemy()) {
-		SceneManagement::instance().goNextScene();
+		SceneManagement::instance().restartCurrentScene();
 	}
+
+	Object* objectCollisioned = collisionPlayerObject();
+	if (objectCollisioned != nullptr) {
+		objectCollisioned->behaviour();
+	}
+
+	map->changePosition(this->player->posPlayer);
 }
 
 void Scene::render()
@@ -125,6 +151,9 @@ void Scene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
 	player->render();
+	for (Object* object : objects) {
+		object->render();
+	}
 	for (Enemy* enemy : enemies) {
 		enemy->render();
 	}
@@ -147,18 +176,37 @@ bool Scene::collisionPlayerEnemy()
 	return false;
 }
 
+Object* Scene::collisionPlayerObject()
+{
+	const float minimumDistance = 12.0f;
+	glm::vec2 positionPlayer = this->player->posPlayer;
+	for (Object* object : objects) {
+		glm::vec2 positionObject = object->posObject;
+		if (distance(positionPlayer, positionObject) < minimumDistance) {
+			return object;
+		}
+	}
+	return nullptr;
+}
+
+void Scene::openDoor()
+{
+	this->door->openDoor();
+	this->haveKey = true;
+}
+
 void Scene::initShaders()
 {
 	Shader vShader, fShader;
 
 	vShader.initFromFile(VERTEX_SHADER, "shaders/texture.vert");
-	if(!vShader.isCompiled())
+	if (!vShader.isCompiled())
 	{
 		cout << "Vertex Shader Error" << endl;
 		cout << "" << vShader.log() << endl << endl;
 	}
 	fShader.initFromFile(FRAGMENT_SHADER, "shaders/texture.frag");
-	if(!fShader.isCompiled())
+	if (!fShader.isCompiled())
 	{
 		cout << "Fragment Shader Error" << endl;
 		cout << "" << fShader.log() << endl << endl;
@@ -167,7 +215,7 @@ void Scene::initShaders()
 	texProgram.addShader(vShader);
 	texProgram.addShader(fShader);
 	texProgram.link();
-	if(!texProgram.isLinked())
+	if (!texProgram.isLinked())
 	{
 		cout << "Shader Linking Error" << endl;
 		cout << "" << texProgram.log() << endl << endl;

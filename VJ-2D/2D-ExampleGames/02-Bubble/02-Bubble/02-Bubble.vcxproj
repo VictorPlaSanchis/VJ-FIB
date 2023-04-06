@@ -17,6 +17,9 @@
     <ClInclude Include="EnemyVampire.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDoor.h" />
+    <ClInclude Include="ObjectKey.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManagement.h" />
@@ -33,6 +36,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectDoor.cpp" />
+    <ClCompile Include="ObjectKey.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManagement.cpp" />
