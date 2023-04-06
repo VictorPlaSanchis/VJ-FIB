@@ -327,6 +327,16 @@ void TileMap::changePosition(const glm::ivec2& pos) const
 
 }
 
+bool TileMap::checkSpikes(const glm::ivec2& pos) const
+{
+	int x, y;
+
+	x = pos.x / tileSize;
+	y = (pos.y / tileSize) + 1;
+	if (map[y * mapSize.x + x] == 9) return true;
+	else return false;
+}
+
 bool TileMap::allTilesColoured() const
 {
 	int roof = 0;

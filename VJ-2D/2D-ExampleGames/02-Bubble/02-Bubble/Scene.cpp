@@ -153,7 +153,10 @@ void Scene::update(int deltaTime)
 		// restar corazon
 		SceneManagement::instance().restartCurrentScene();
 	}
-
+	if (this->map->checkSpikes(this->player->posPlayer) && !playerCannotDie) {
+		// restar corazon
+		SceneManagement::instance().restartCurrentScene();
+	}
 	Object* objectCollisioned = collisionPlayerObject();
 	if (objectCollisioned != nullptr) {
 		objectCollisioned->behaviour();
