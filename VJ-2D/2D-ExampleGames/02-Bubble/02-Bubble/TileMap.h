@@ -38,7 +38,8 @@ public:
 	void changePosition(const glm::ivec2& pos) const;
 	void update(const glm::vec2& minCoords, ShaderProgram& program);
 	void getEnemies(std::vector<string>* enemyTypes, std::vector<int>* enemiesX, std::vector<int>* enemiesY);
-	
+	bool allTilesColoured() const;
+
 private:
 	bool loadLevel(const string &levelFile);
 	void prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program);

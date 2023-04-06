@@ -1,6 +1,6 @@
-﻿  Object.cpp
-  Scene.cpp
-C:\Users\vitolopaolo\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Scene.cpp(68,20): warning C4018: '<': no coinciden signed/unsigned
+﻿  main.cpp
+  TileMap.cpp
+C:\Users\vitolopaolo\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\TileMap.cpp(105,7): warning C4101: 'tile': variable local sin referencia
   Generando código...
 SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(image_DXT.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(image_helper.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración

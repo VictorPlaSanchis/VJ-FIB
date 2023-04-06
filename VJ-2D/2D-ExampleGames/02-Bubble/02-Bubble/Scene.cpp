@@ -105,7 +105,7 @@ void Scene::init()
 	key->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	key->setPosition(glm::vec2((INIT_PLAYER_X_TILES + 3) * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	key->setTileMap(map);
-	objects.push_back(key);
+	//objects.push_back(key);
 	this->key = key;
 
 	ObjectDoor* door = new ObjectDoor();
@@ -137,6 +137,9 @@ void Scene::update(int deltaTime)
 	}
 
 	map->changePosition(this->player->posPlayer);
+	if (this->map->allTilesColoured()) {
+		makeAppearKey();
+	}
 }
 
 void Scene::render()
@@ -193,6 +196,14 @@ void Scene::openDoor()
 {
 	this->door->openDoor();
 	this->haveKey = true;
+}
+
+void Scene::makeAppearKey()
+{
+	auto it = std::find(objects.begin(), objects.end(), key);
+	if (it == objects.end()) {
+		objects.push_back(this->key);
+	}
 }
 
 void Scene::initShaders()

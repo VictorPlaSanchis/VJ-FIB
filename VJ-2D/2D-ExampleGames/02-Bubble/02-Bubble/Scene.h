@@ -36,6 +36,7 @@ public:
 	Object* collisionPlayerObject();
 
 	void openDoor();
+	void makeAppearKey();
 
 private:
 	void initShaders();

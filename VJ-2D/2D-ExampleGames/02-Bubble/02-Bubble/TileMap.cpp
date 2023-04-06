@@ -326,3 +326,27 @@ void TileMap::changePosition(const glm::ivec2& pos) const
 
 
 }
+
+bool TileMap::allTilesColoured() const
+{
+	int roof = 0;
+	for (int j = 0; j < mapSize.y; j++)
+	{
+		for (int i = 0; i < mapSize.x; i++)
+		{
+			if (map[j * mapSize.x + i] == 1)
+			{
+				roof++;
+			}
+			if (map[j * mapSize.x + i] == 2)
+			{
+				roof++;
+			}
+		}
+	}
+
+	if (roof > 0)
+		return false;
+	else
+		return true;
+}
