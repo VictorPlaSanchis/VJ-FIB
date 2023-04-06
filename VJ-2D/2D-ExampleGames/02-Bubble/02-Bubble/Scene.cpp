@@ -104,6 +104,7 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
+	map->update(glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	for (Enemy* enemy : enemies) {
 		enemy->update(deltaTime);
 	}

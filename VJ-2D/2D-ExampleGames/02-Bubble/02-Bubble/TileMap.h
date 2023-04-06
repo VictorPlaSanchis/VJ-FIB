@@ -36,7 +36,7 @@ public:
 	bool collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, int *posY) const;
 	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size) const;
 	void changePosition(const glm::ivec2& pos) const;
-
+	void update(const glm::vec2& minCoords, ShaderProgram& program);
 	void getEnemies(std::vector<string>* enemyTypes, std::vector<int>* enemiesX, std::vector<int>* enemiesY);
 	
 private:
