@@ -18,6 +18,7 @@ public:
 	void goPreviousScene();
 	void goFirstScene();
 	void goLastScene();
+	void goScene(int index);
 	void goMenu();
 	void restartCurrentScene();
 

@@ -38,6 +38,8 @@ public:
 	void openDoor();
 	void makeAppearKey();
 
+	bool playerCannotDie = false;
+
 private:
 	void initShaders();
 	void initVariables();

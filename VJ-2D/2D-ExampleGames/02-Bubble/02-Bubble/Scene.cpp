@@ -127,7 +127,8 @@ void Scene::update(int deltaTime)
 	for (Enemy* enemy : enemies) {
 		enemy->update(deltaTime);
 	}
-	if (collisionPlayerEnemy()) {
+	if (collisionPlayerEnemy() && !playerCannotDie) {
+		// restar corazon
 		SceneManagement::instance().restartCurrentScene();
 	}
 

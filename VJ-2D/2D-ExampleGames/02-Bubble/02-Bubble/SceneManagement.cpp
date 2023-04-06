@@ -37,6 +37,13 @@ void SceneManagement::goLastScene()
 {
 }
 
+void SceneManagement::goScene(int index)
+{
+	this->currentSceneIndex = index;
+	this->currentScene = this->scenes[index];
+	this->currentScene->init();
+}
+
 void SceneManagement::goMenu()
 {
 	this->currentSceneIndex = 0;
