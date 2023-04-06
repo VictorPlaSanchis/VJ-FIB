@@ -41,8 +41,10 @@ void Game::keyPressed(int key)
 		SceneManagement::instance().goScene(1);
 	if (key == 49)
 		SceneManagement::instance().goScene(0);
-	if (key == 75 || key == 107)
+	if (key == 71 || key == 103)
 		SceneManagement::instance().currentScene->playerCannotDie = !SceneManagement::instance().currentScene->playerCannotDie;
+	if (key == 75 || key == 107)
+		SceneManagement::instance().currentScene->makeAppearKey();
 	if (key == 97)
 		SceneManagement::instance().goNextScene();
 	if(key == 27) // Escape code
