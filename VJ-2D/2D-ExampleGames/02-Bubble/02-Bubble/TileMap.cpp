@@ -239,3 +239,44 @@ void TileMap::getEnemies(std::vector<string>* enemyTypes, std::vector<int>* enem
 	*enemiesX = this->enemiesX;
 	*enemiesY = this->enemiesY;
 }
+
+void TileMap::changePosition(const glm::ivec2& pos) const
+{
+	int x, y;
+
+	x = pos.x / tileSize;
+	y = (pos.y / tileSize) + 1;
+
+	switch (map[y * mapSize.x + x])
+	{
+	case 1:
+		map[y * mapSize.x + x] = 3;
+		break;
+	case 2:
+		map[y * mapSize.x + x] = 4;
+		break;
+	case 5:
+		map[y * mapSize.x + x] = 7;
+		break;
+	case 6:
+		map[y * mapSize.x + x] = 8;
+		break;
+	case 9:
+
+		break;
+	case 10:
+		map[y * mapSize.x + x] = 12;
+		break;
+	case 13:
+		map[y * mapSize.x + x] = 15;
+		break;
+	case 14:
+		map[y * mapSize.x + x] = 16;
+		break;
+	default:
+		break;
+	}
+
+
+
+}

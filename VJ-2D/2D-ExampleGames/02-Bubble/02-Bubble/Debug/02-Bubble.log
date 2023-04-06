@@ -1,7 +1,8 @@
-﻿  Scene.cpp
-C:\Users\vitolopaolo\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Scene.cpp(67,20): warning C4018: '<': no coinciden signed/unsigned
-SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(image_DXT.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(image_helper.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(SOIL.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(stb_image_aug.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
-  02-Bubble.vcxproj -> C:\Users\vitolopaolo\source\repos\VJ-FIB\VJ-2D\2D-ExampleGames\02-Bubble\Debug\02-Bubble.exe
+﻿  Player.cpp
+C:\Users\Alfonso\source\repos\VJ-FIBlast\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(41,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Alfonso\source\repos\VJ-FIBlast\VJ-2D\2D-ExampleGames\02-Bubble\02-Bubble\Player.cpp(47,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_DXT.obj)' or at ''; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(SOIL.obj)' or at ''; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(stb_image_aug.obj)' or at ''; linking object as if no debug info
+  02-Bubble.vcxproj -> C:\Users\Alfonso\Source\Repos\VJ-FIBlast\VJ-2D\2D-ExampleGames\02-Bubble\Debug\02-Bubble.exe
